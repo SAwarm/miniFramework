@@ -13,7 +13,7 @@ class Route {
         );
 
         $routes['about_us'] = array(
-            'route'         =>  '/sobre_nos',
+            'route'         =>  '/about_us',
             'controller'    =>  'indexController',
             'action'        =>  'about_us'
         );
