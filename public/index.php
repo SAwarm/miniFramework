@@ -1,3 +1,3 @@
 <?php
 
-    echo "page";
+    require_once "./../vendor/autoload.php";
