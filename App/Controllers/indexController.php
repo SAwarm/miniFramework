@@ -3,12 +3,23 @@
 namespace App\Controllers;
 
 use MF\Controller\Action;
+use App\Connection;
+use App\Models\Product;
 
 class indexController extends Action {
 
     public function index()
     {
-        $this->view->data = array('text', 'test');
+        //$this->view->data = array('text', 'test');
+
+        $con = Connection::getDb();
+
+        $product = new Product($con);
+
+        $products = $product->getProducts();
+
+        $this->view->data = $products;
+
         $this->render('index', 'layout_one');
     }
 
