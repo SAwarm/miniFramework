@@ -2,8 +2,12 @@
 
 namespace App\Controllers;
 
+//* recurses
+use MF\Model\Container;
 use MF\Controller\Action;
-use App\Connection;
+
+//* models
+use App\Models\Info;
 use App\Models\Product;
 
 class indexController extends Action {
@@ -11,10 +15,7 @@ class indexController extends Action {
     public function index()
     {
         //$this->view->data = array('text', 'test');
-
-        $con = Connection::getDb();
-
-        $product = new Product($con);
+        $product = Container::getModel('product');
 
         $products = $product->getProducts();
 
@@ -25,7 +26,14 @@ class indexController extends Action {
 
     public function about_us()
     {
-        $this->view->data = array('cellphone', 'computer');
+        //$this->view->data = array('cellphone', 'computer');
+
+        $info = Container::getModel('info');
+
+        $infos = $info->getInfo();
+
+        $this->view->data = $infos;
+
         $this->render('about_us', 'layout_two');
     }
 }
